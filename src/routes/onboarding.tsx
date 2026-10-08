@@ -5,7 +5,7 @@ import { supabase } from "@/integrations/supabase/client";
 export const Route=createFileRoute("/onboarding")({component:Onboarding});
 const goals=["Organizar minha vida financeira","Criar uma reserva","Sair das dívidas","Comprar um imóvel","Comprar um carro","Viajar","Investir","Outro"];
 function Onboarding(){const nav=useNavigate();const [step,setStep]=useState(1);const [income,setIncome]=useState("");const [goal,setGoal]=useState("");const [debt,setDebt]=useState<boolean|null>(null);const [reserve,setReserve]=useState<boolean|null>(null);const [saving,setSaving]=useState("");const [busy,setBusy]=useState(false);
-async function finish(){setBusy(true);const {data}=await supabase.auth.getUser();if(data.user)await supabase.from("profiles").upsert({id:data.user.id,full_name:data.user.user_metadata?.full_name??null,currency:"BRL"});setBusy(false);await nav({to:"/"});}
+async function finish(){setBusy(true);const {data}=await supabase.auth.getUser();if(data.user)await supabase.from("profiles").upsert({id:data.user.id,full_name:data.user.user_metadata?.full_name??null,currency:"BRL"});setBusy(false);await nav({to:"/app"});}
 const next=()=>setStep(s=>Math.min(6,s+1));
 return <main className="onboarding"><div className="onboarding-top"><div className="nexo-brand"><div className="nexo-logo">N</div><div><strong>NEXO</strong><span>FINANCE</span></div></div><span>{step} / 6</span></div><div className="onboarding-card"><div className="step-line"><div style={{width:(step/6)*100+"%"}}/></div>
 {step===1&&<Step title="Vamos organizar sua vida financeira." subtitle="O NEXO vai usar algumas respostas para preparar seu ponto de partida." action={<button className="nexo-button gold" onClick={next}>Começar <ArrowRight size={16}/></button>}/>}
