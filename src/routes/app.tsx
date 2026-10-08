@@ -12,6 +12,7 @@ import {
   Menu,
   Plus,
   Target,
+  Settings,
   WalletCards,
   X,
 } from "lucide-react";
