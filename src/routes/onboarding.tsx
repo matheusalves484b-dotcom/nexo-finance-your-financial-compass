@@ -1,0 +1,18 @@
+import { createFileRoute, useNavigate } from "@tanstack/react-router";
+import { useState } from "react";
+import { ArrowRight, Check } from "lucide-react";
+import { supabase } from "@/integrations/supabase/client";
+export const Route=createFileRoute("/onboarding")({component:Onboarding});
+const goals=["Organizar minha vida financeira","Criar uma reserva","Sair das dívidas","Comprar um imóvel","Comprar um carro","Viajar","Investir","Outro"];
+function Onboarding(){const nav=useNavigate();const [step,setStep]=useState(1);const [income,setIncome]=useState("");const [goal,setGoal]=useState("");const [debt,setDebt]=useState<boolean|null>(null);const [reserve,setReserve]=useState<boolean|null>(null);const [saving,setSaving]=useState("");const [busy,setBusy]=useState(false);
+async function finish(){setBusy(true);const {data}=await supabase.auth.getUser();if(data.user)await supabase.from("profiles").upsert({id:data.user.id,full_name:data.user.user_metadata?.full_name??null,currency:"BRL"});setBusy(false);await nav({to:"/"});}
+const next=()=>setStep(s=>Math.min(6,s+1));
+return <main className="onboarding"><div className="onboarding-top"><div className="nexo-brand"><div className="nexo-logo">N</div><div><strong>NEXO</strong><span>FINANCE</span></div></div><span>{step} / 6</span></div><div className="onboarding-card"><div className="step-line"><div style={{width:(step/6)*100+"%"}}/></div>
+{step===1&&<Step title="Vamos organizar sua vida financeira." subtitle="O NEXO vai usar algumas respostas para preparar seu ponto de partida." action={<button className="nexo-button gold" onClick={next}>Começar <ArrowRight size={16}/></button>}/>}
+{step===2&&<Step title="Qual é sua renda mensal?" subtitle="Uma estimativa já ajuda a construir seu planejamento." action={<><div className="currency-input"><span>R$</span><input type="number" min="0" value={income} onChange={e=>setIncome(e.target.value)} placeholder="0,00"/></div><button className="nexo-button gold" onClick={next}>Continuar <ArrowRight size={16}/></button></>}/>}
+{step===3&&<Step title="Qual é seu principal objetivo?" subtitle="Escolha o que mais importa para você agora." action={<div className="choice-grid">{goals.map(g=><button key={g} className={goal===g?"choice selected":"choice"} onClick={()=>{setGoal(g);next();}}>{g}</button>)}</div>}/>}
+{step===4&&<Step title="Você possui dívidas?" subtitle="Isso ajuda o NEXO a priorizar seu planejamento." action={<div className="choice-grid two"><button className={debt===true?"choice selected":"choice"} onClick={()=>{setDebt(true);next();}}>Sim</button><button className={debt===false?"choice selected":"choice"} onClick={()=>{setDebt(false);next();}}>Não</button></div>}/>}
+{step===5&&<Step title="Você possui uma reserva financeira?" subtitle="Vamos entender seu ponto de partida." action={<div className="choice-grid two"><button className="choice" onClick={()=>{setReserve(true);next();}}>Sim</button><button className="choice" onClick={()=>{setReserve(false);next();}}>Não</button></div>}/>}
+{step===6&&<Step title="Quanto você gostaria de economizar por mês?" subtitle="Você poderá ajustar isso depois no planejamento." action={<><div className="currency-input"><span>R$</span><input type="number" min="0" value={saving} onChange={e=>setSaving(e.target.value)} placeholder="0,00"/></div><button className="nexo-button gold" onClick={finish} disabled={busy}>{busy?"Preparando...":"Seu NEXO está pronto"} <Check size={16}/></button></>}/>}
+</div></main>}
+function Step({title,subtitle,action}:{title:string;subtitle:string;action:React.ReactNode}){return <div className="step-content"><span className="eyebrow">NEXO FINANCE</span><h1>{title}</h1><p>{subtitle}</p><div className="step-action">{action}</div></div>}
