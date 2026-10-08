@@ -1,0 +1,7 @@
+import { createFileRoute, useNavigate } from "@tanstack/react-router";
+import { useState, type FormEvent } from "react";
+import { supabase } from "@/integrations/supabase/client";
+export const Route=createFileRoute("/nova-senha")({component:NewPassword});
+function NewPassword(){const nav=useNavigate();const [password,setPassword]=useState("");const [busy,setBusy]=useState(false);const [error,setError]=useState("");
+async function submit(e:FormEvent){e.preventDefault();setBusy(true);setError("");const r=await supabase.auth.updateUser({password});setBusy(false);if(r.error){setError("Não foi possível atualizar a senha.");return;}await nav({to:"/login"});}
+return <main className="nexo-auth"><section className="auth-panel auth-panel-wide"><div className="auth-mobile-brand"><div className="nexo-mark">N</div><strong>NEXO</strong></div><div className="auth-content"><span className="eyebrow">NOVA SENHA</span><h2>Crie uma nova senha.</h2><p>Escolha uma senha segura para proteger seu acesso.</p><form className="nexo-auth-form" onSubmit={submit}>{error&&<div className="nexo-alert">{error}</div>}<label>Nova senha<input type="password" minLength={6} required value={password} onChange={e=>setPassword(e.target.value)} placeholder="Mínimo de 6 caracteres"/></label><button className="nexo-button gold full" disabled={busy}>{busy?"Salvando...":"Atualizar senha"}</button></form></div></section></main>}
