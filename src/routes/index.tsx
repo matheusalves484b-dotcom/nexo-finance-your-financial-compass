@@ -254,7 +254,8 @@ function Index() {
           <NavItem href="/app-checklists" icon={<CheckCircle2 size={18} />} label="Checklists" />
           <NavItem href="/app-metas" icon={<Target size={18} />} label="Metas" />
           <NavItem href="/app-dividas" icon={<CreditCard size={18} />} label="Dívidas" />
-          <NavItem href="/app-patrimonio" icon={<CircleDollarSign size={18} />} label="Patrimônio" />\n              <NavItem href="/app-contas" icon={<WalletCards size={18} />} label="Contas" />
+          <NavItem href="/app-patrimonio" icon={<CircleDollarSign size={18} />} label="Patrimônio" />
+              <NavItem href="/app-contas" icon={<WalletCards size={18} />} label="Contas" />
         </nav>
         <div className="sidebar-bottom">
           <div className="nexo-mini-note">
