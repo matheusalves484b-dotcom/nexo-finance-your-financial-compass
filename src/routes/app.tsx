@@ -248,7 +248,7 @@ function Index() {
           <div><strong>NEXO</strong><span>FINANCE</span></div>
         </div>
         <nav>
-          <NavItem active href="/" icon={<LayoutDashboard size={18} />} label="Dashboard" />
+          <NavItem active href="/app" icon={<LayoutDashboard size={18} />} label="Dashboard" />
           <NavItem href="/app-planejamento" icon={<BarChart3 size={18} />} label="Planejamento" />
           <NavItem href="/app-transacoes" icon={<WalletCards size={18} />} label="Transações" />
           <NavItem href="/app-checklists" icon={<CheckCircle2 size={18} />} label="Checklists" />
@@ -394,7 +394,7 @@ function Index() {
       </main>
 
       <nav className="mobile-bottom-nav">
-        <NavItem active href="/" icon={<LayoutDashboard size={18}/>} label="Início" compact />
+        <NavItem active href="/app" icon={<LayoutDashboard size={18}/>} label="Início" compact />
         <NavItem href="/app-transacoes" icon={<WalletCards size={18}/>} label="Mov." compact />
         <button className="floating-add" onClick={() => setShowAdd(true)} aria-label="Adicionar"><Plus size={22}/></button>
         <NavItem href="/app-checklists" icon={<CheckCircle2 size={18}/>} label="Tarefas" compact />
