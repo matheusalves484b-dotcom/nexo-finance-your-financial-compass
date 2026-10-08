@@ -1,0 +1,9 @@
+import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
+import { useEffect, useState } from "react";
+import { ArrowLeft, LogOut, Plus } from "lucide-react";
+import { supabase } from "@/integrations/supabase/client";
+export const Route=createFileRoute("/app-transacoes.tsx")({component:Page});
+function Page(){const nav=useNavigate();const [count,setCount]=useState<number|null>(null);const [loading,setLoading]=useState(true);
+useEffect(()=>{(async()=>{const {data:user}=await supabase.auth.getUser();if(!user.user){await nav({to:"/login"});return;}const r=await supabase.from("transactions").select("id",{count:"exact",head:true}).eq("user_id",user.user.id);setCount(r.count??0);setLoading(false);})();},[nav]);
+async function logout(){await supabase.auth.signOut();await nav({to:"/login"});}
+return <main className="nexo-module"><header className="module-header"><Link className="icon-button" to="/"><ArrowLeft size={18}/></Link><div><span className="eyebrow">NEXO FINANCE</span><h1>Transações</h1></div><button className="icon-button" onClick={logout}><LogOut size={17}/></button></header><section className="module-hero"><span className="eyebrow">VISÃO GERAL</span><h2>Suas movimentações</h2><p>Registre e acompanhe receitas e despesas.</p><div className="module-stat"><span>REGISTROS</span><strong>{loading?"—":count}</strong></div><button className="nexo-button gold"><Plus size={16}/> Adicionar</button></section><section className="module-card"><span className="eyebrow">PRÓXIMO PASSO</span><h3>{count===0?"Comece pelo seu primeiro registro.":"Continue organizando sua vida financeira."}</h3><p>{count===0?"Quando você adicionar dados reais, o NEXO poderá calcular métricas e gerar insights personalizados.":"O NEXO usa seus registros reais para construir sua visão financeira."}</p><Link className="nexo-button" to="/">Voltar ao dashboard</Link></section></main>}
