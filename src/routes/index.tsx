@@ -428,7 +428,7 @@ function Metric({ label, value, icon, positive }: { label: string; value: string
 
 function NavItem({ icon, label, href, active = false, compact = false }: { icon: React.ReactNode; label: string; href?: string; active?: boolean; compact?: boolean }) {
   const className = `nav-item ${active ? "active" : ""} ${compact ? "compact" : ""}`;
-  return href ? <Link to={href} className={className}>{icon}<span>{label}</span></Link> : <button className={className}>{icon}<span>{label}</span></button>;
+  return href ? <a href={href} className={className}>{icon}<span>{label}</span></a> : <button className={className}>{icon}<span>{label}</span></button>;
 }
 
 function EmptyInline({ text }: { text: string }) {
