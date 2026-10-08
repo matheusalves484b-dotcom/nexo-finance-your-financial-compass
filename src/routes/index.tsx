@@ -231,7 +231,7 @@ function Index() {
           <span className="eyebrow">NEXO FINANCE</span>
           <h1>Seu dinheiro precisa de direção.</h1>
           <p>Entre na sua conta para acessar seu planejamento financeiro.</p>
-          <Link to="/login" className="nexo-button gold">Entrar no NEXO</Link>
+          <a href="/login" className="nexo-button gold">Entrar no NEXO</a>
         </div>
       </main>
     );
