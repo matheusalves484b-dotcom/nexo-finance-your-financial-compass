@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useMemo, useState } from "react";
 import {
   ArrowDownRight,
@@ -248,13 +248,13 @@ function Index() {
           <div><strong>NEXO</strong><span>FINANCE</span></div>
         </div>
         <nav>
-          <NavItem active icon={<LayoutDashboard size={18} />} label="Dashboard" />
-          <NavItem icon={<BarChart3 size={18} />} label="Planejamento" />
-          <NavItem icon={<WalletCards size={18} />} label="Transações" />
-          <NavItem icon={<CheckCircle2 size={18} />} label="Checklists" />
-          <NavItem icon={<Target size={18} />} label="Metas" />
-          <NavItem icon={<CreditCard size={18} />} label="Dívidas" />
-          <NavItem icon={<CircleDollarSign size={18} />} label="Patrimônio" />
+          <NavItem active href="/" icon={<LayoutDashboard size={18} />} label="Dashboard" />
+          <NavItem href="/app-planejamento" icon={<BarChart3 size={18} />} label="Planejamento" />
+          <NavItem href="/app-transacoes" icon={<WalletCards size={18} />} label="Transações" />
+          <NavItem href="/app-checklists" icon={<CheckCircle2 size={18} />} label="Checklists" />
+          <NavItem href="/app-metas" icon={<Target size={18} />} label="Metas" />
+          <NavItem href="/app-dividas" icon={<CreditCard size={18} />} label="Dívidas" />
+          <NavItem href="/app-patrimonio" icon={<CircleDollarSign size={18} />} label="Patrimônio" />
         </nav>
         <div className="sidebar-bottom">
           <div className="nexo-mini-note">
@@ -393,11 +393,11 @@ function Index() {
       </main>
 
       <nav className="mobile-bottom-nav">
-        <NavItem active icon={<LayoutDashboard size={18}/>} label="Início" compact />
-        <NavItem icon={<WalletCards size={18}/>} label="Mov." compact />
+        <NavItem active href="/" icon={<LayoutDashboard size={18}/>} label="Início" compact />
+        <NavItem href="/app-transacoes" icon={<WalletCards size={18}/>} label="Mov." compact />
         <button className="floating-add" onClick={() => setShowAdd(true)} aria-label="Adicionar"><Plus size={22}/></button>
-        <NavItem icon={<CheckCircle2 size={18}/>} label="Tarefas" compact />
-        <NavItem icon={<Target size={18}/>} label="Metas" compact />
+        <NavItem href="/app-checklists" icon={<CheckCircle2 size={18}/>} label="Tarefas" compact />
+        <NavItem href="/app-metas" icon={<Target size={18}/>} label="Metas" compact />
       </nav>
 
       {showAdd && (
@@ -426,8 +426,9 @@ function Metric({ label, value, icon, positive }: { label: string; value: string
   return <div className="metric-card"><div className={`metric-icon ${positive ? "positive" : ""}`}>{icon}</div><span>{label}</span><strong>{value}</strong></div>;
 }
 
-function NavItem({ icon, label, active = false, compact = false }: { icon: React.ReactNode; label: string; active?: boolean; compact?: boolean }) {
-  return <button className={`nav-item ${active ? "active" : ""} ${compact ? "compact" : ""}`}>{icon}<span>{label}</span></button>;
+function NavItem({ icon, label, href, active = false, compact = false }: { icon: React.ReactNode; label: string; href?: string; active?: boolean; compact?: boolean }) {
+  const className = `nav-item ${active ? "active" : ""} ${compact ? "compact" : ""}`;
+  return href ? <Link to={href} className={className}>{icon}<span>{label}</span></Link> : <button className={className}>{icon}<span>{label}</span></button>;
 }
 
 function EmptyInline({ text }: { text: string }) {
