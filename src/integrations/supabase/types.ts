@@ -353,43 +353,43 @@ export type Database = {
         Insert: { id?:string; user_id:string; title:string; description?:string|null; deadline?:string|null; priority?:"low"|"medium"|"high"; category?:string|null; status?:"pending"|"completed"|"cancelled"; recurrence?:"none"|"daily"|"weekly"|"monthly"; created_at?:string; updated_at?:string },
         Update: { id?:string; user_id?:string; title?:string; description?:string|null; deadline?:string|null; priority?:"low"|"medium"|"high"; category?:string|null; status?:"pending"|"completed"|"cancelled"; recurrence?:"none"|"daily"|"weekly"|"monthly"; created_at?:string; updated_at?:string },
         Relationships: []
-      }
+      },
       checklist_items: {
         Row: { id:string; checklist_id:string; user_id:string; title:string; description:string|null; deadline:string|null; priority:"low"|"medium"|"high"; status:"pending"|"completed"|"cancelled"; recurrence:"none"|"daily"|"weekly"|"monthly"; created_at:string; updated_at:string },
         Insert: { id?:string; checklist_id:string; user_id:string; title:string; description?:string|null; deadline?:string|null; priority?:"low"|"medium"|"high"; status?:"pending"|"completed"|"cancelled"; recurrence?:"none"|"daily"|"weekly"|"monthly"; created_at?:string; updated_at?:string },
         Update: { id?:string; checklist_id?:string; user_id?:string; title?:string; description?:string|null; deadline?:string|null; priority?:"low"|"medium"|"high"; status?:"pending"|"completed"|"cancelled"; recurrence?:"none"|"daily"|"weekly"|"monthly"; created_at?:string; updated_at?:string },
         Relationships: []
-      }
+      },
       debt_payments: {
         Row: { id:string; user_id:string; debt_id:string; amount:number; payment_date:string; notes:string|null; created_at:string },
         Insert: { id?:string; user_id:string; debt_id:string; amount:number; payment_date?:string; notes?:string|null; created_at?:string },
         Update: { id?:string; user_id?:string; debt_id?:string; amount?:number; payment_date?:string; notes?:string|null; created_at?:string },
         Relationships: []
-      }
+      },
       notifications: {
         Row: { id:string; user_id:string; title:string; body:string|null; kind:string; read_at:string|null; enabled:boolean; created_at:string },
         Insert: { id?:string; user_id:string; title:string; body?:string|null; kind?:string; read_at?:string|null; enabled?:boolean; created_at?:string },
         Update: { id?:string; user_id?:string; title?:string; body?:string|null; kind?:string; read_at?:string|null; enabled?:boolean; created_at?:string },
         Relationships: []
-      }
+      },
       subscriptions: {
         Row: { id:string; user_id:string; plan:"free"|"complete"; status:"trialing"|"active"|"past_due"|"canceled"|"expired"; billing_cycle:"monthly"|"annual"|null; trial_ends_at:string|null; current_period_end:string|null; provider:string|null; provider_subscription_id:string|null; created_at:string; updated_at:string },
         Insert: { id?:string; user_id:string; plan?:"free"|"complete"; status?:"trialing"|"active"|"past_due"|"canceled"|"expired"; billing_cycle?:"monthly"|"annual"|null; trial_ends_at?:string|null; current_period_end?:string|null; provider?:string|null; provider_subscription_id?:string|null; created_at?:string; updated_at?:string },
         Update: { id?:string; user_id?:string; plan?:"free"|"complete"; status?:"trialing"|"active"|"past_due"|"canceled"|"expired"; billing_cycle?:"monthly"|"annual"|null; trial_ends_at?:string|null; current_period_end?:string|null; provider?:string|null; provider_subscription_id?:string|null; created_at?:string; updated_at?:string },
         Relationships: []
-      }
+      },
       plans: {
         Row: { id:string; name:string; price_monthly:number|null; price_annual:number|null; features:any; active:boolean },
         Insert: { id:string; name:string; price_monthly?:number|null; price_annual?:number|null; features?:any; active?:boolean },
         Update: { id?:string; name?:string; price_monthly?:number|null; price_annual?:number|null; features?:any; active?:boolean },
         Relationships: []
-      }
+      },
       payments: {
         Row: { id:string; user_id:string; subscription_id:string|null; amount:number; currency:string; status:"pending"|"paid"|"failed"|"refunded"; provider:string|null; provider_payment_id:string|null; paid_at:string|null; created_at:string },
         Insert: { id?:string; user_id:string; subscription_id?:string|null; amount:number; currency?:string; status?:"pending"|"paid"|"failed"|"refunded"; provider?:string|null; provider_payment_id?:string|null; paid_at?:string|null; created_at?:string },
         Update: { id?:string; user_id?:string; subscription_id?:string|null; amount?:number; currency?:string; status?:"pending"|"paid"|"failed"|"refunded"; provider?:string|null; provider_payment_id?:string|null; paid_at?:string|null; created_at?:string },
         Relationships: []
-      }
+      },
       financial_snapshots: {
         Row: { id:string; user_id:string; snapshot_date:string; total_income:number; total_expenses:number; savings:number; assets:number; liabilities:number; net_worth:number; created_at:string },
         Insert: { id?:string; user_id:string; snapshot_date:string; total_income?:number; total_expenses?:number; savings?:number; assets?:number; liabilities?:number; net_worth?:number; created_at?:string },
