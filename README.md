@@ -27,3 +27,7 @@ npm run dev
 - TypeScript
 - React
 - Tailwind CSS
+
+## Regras de Negócio e Financeiras
+As diretrizes para cálculos, invariantes e integridade de dados do motor NEXO estão documentadas em [FINANCIAL_SPEC.md](./FINANCIAL_SPEC.md). 
+Este projeto segue a política de "Não Invenção de Dados", priorizando a precisão histórica sobre projeções sintéticas.
