@@ -54,7 +54,7 @@ export interface FileRoutesById {
 }
 export interface FileRouteTypes {fileRoutesByFullPath:FileRoutesByFullPath;fullPaths:keyof FileRoutesByFullPath;fileRoutesByTo:FileRoutesByTo;to:keyof FileRoutesByTo;id:keyof FileRoutesById;fileRoutesById:FileRoutesById}
 export interface RootRouteChildren {
- IndexRoute:typeof IndexRoute;LoginRoute:typeof LoginRoute;CadastroRoute:typeof CadastroRoute;RecuperarSenhaRoute:typeof RecuperarSenhaRoute;NovaSenhaRoute:typeof NovaSenhaRoute;OnboardingRoute:typeof OnboardingRoute;
+ IndexRoute:typeof IndexRoute;AppRoute:typeof AppRoute;PrecosRoute:typeof PrecosRoute;AppRelatoriosRoute:typeof AppRelatoriosRoute;AppConfiguracoesRoute:typeof AppConfiguracoesRoute;AppAssinaturaRoute:typeof AppAssinaturaRoute;LoginRoute:typeof LoginRoute;CadastroRoute:typeof CadastroRoute;RecuperarSenhaRoute:typeof RecuperarSenhaRoute;NovaSenhaRoute:typeof NovaSenhaRoute;OnboardingRoute:typeof OnboardingRoute;
  AppPlanejamentoRoute:typeof AppPlanejamentoRoute;AppTransacoesRoute:typeof AppTransacoesRoute;AppChecklistsRoute:typeof AppChecklistsRoute;AppMetasRoute:typeof AppMetasRoute;AppDividasRoute:typeof AppDividasRoute;AppPatrimonioRoute:typeof AppPatrimonioRoute;AppInsightsRoute:typeof AppInsightsRoute;AppContasRoute:typeof AppContasRoute;
 }
 declare module '@tanstack/react-router' { interface FileRoutesByPath {
