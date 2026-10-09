@@ -355,7 +355,7 @@ function Index() {
               <div className="nexo-card">
                 <div className="card-heading">
                   <div><span className="eyebrow">MOVIMENTAÇÕES</span><h2>Últimas transações</h2></div>
-                  <button className="text-button">Ver todas <ChevronRight size={15}/></button>
+                  <a className="text-button" href="/app-transacoes">Ver todas <ChevronRight size={15}/></a>
                 </div>
                 <div className="transaction-list">
                   {transactions.slice(0, 5).map((t) => (
@@ -372,7 +372,7 @@ function Index() {
               <div className="nexo-card">
                 <div className="card-heading">
                   <div><span className="eyebrow">OBJETIVOS</span><h2>Suas metas</h2></div>
-                  <button className="text-button">Ver todas <ChevronRight size={15}/></button>
+                  <a className="text-button" href="/app-metas">Ver todas <ChevronRight size={15}/></a>
                 </div>
                 <div className="goal-list">
                   {goals.map((goal) => {
